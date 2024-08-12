@@ -1,0 +1,93 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "LeoSampleAPI",
+		"description": "A sample API connected Azure SQL Server built by Azure Functions and FastAPI Framework.",
+		"version": "0.1"
+	},
+	"servers": [
+		{
+			"url": "https://leo-sample-app.azurewebsites.net/v1"
+		}
+	],
+	"paths": {
+		"/product": {
+			"get": {
+				"summary": "Returns prodcut details",
+				"parameters": [
+					{
+						"name": "limit",
+						"in": "query",
+						"description": "The number of results to return",
+						"required": false,
+						"style": "simple",
+						"explode": false,
+						"schema": {
+							"type": "integer"
+						}
+					},
+					{
+						"name": "id",
+						"in": "query",
+						"description": "The id of results to return",
+						"required": false,
+						"style": "simple",
+						"explode": false,
+						"schema": {
+							"type": "integer"
+						}
+					},
+					{
+						"name": "name",
+						"in": "query",
+						"description": "The name of results to return",
+						"required": false,
+						"style": "simple",
+						"explode": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/inline_response_200"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"product_response_200": {
+				"type": "object",
+				"properties": {
+					"success": {
+						"type": "boolean"
+					},
+					"result": {
+						"type": "object",
+						"properties": {
+							"ProductID": "integer",
+							"Name": "string",
+							"ProductNumber": "integer",
+							"StandardCost": "float",
+							"ListPrice": "float",
+							"ProductModelID": "integer",
+							"ProductCategoryID": "integer",
+							"SellStartDate": "date",
+							"SellEndDate": "date"
+						}
+					}
+				}
+			}
+		}
+	}
+}
